@@ -273,12 +273,21 @@ if run_button:
                     st.subheader("Conversion LIFT Score")
                     # Выводим главный KPI крупным шрифтом с помощью st.metric
                     st.metric(label="Индекс вероятности конверсии", value=f"{lift_score} / 100")
-                    st.caption("Рассчитано на основе метрик: Value, Relevance, Clarity, Friction, Anxiety.")
+                    st.caption("Рассчитано на основе метрик: Ценность, Релевантность, Понятность, Трение, Тревожность.")
                     st.markdown('</div>', unsafe_allow_html=True)
                     
                     # Выводим сырые оценки в виде таблицы для аналитиков
                     st.markdown("**Сырые оценки ИИ (из 10):**")
-                    st.json(ai_result['metrics'])
+
+                    # Переводим ключи на русский только для визуального отображения
+                    translated_metrics = {
+                        "Ценность": ai_result['metrics'].get('value', 0),
+                        "Релевантность": ai_result['metrics'].get('relevance', 0),
+                        "Понятность": ai_result['metrics'].get('clarity', 0),
+                        "Трение": ai_result['metrics'].get('friction', 0),
+                        "Тревожность": ai_result['metrics'].get('anxiety', 0)
+                    }
+                    st.json(translated_metrics)
                 
                 with col2:
                     st.markdown('<div class="insight-card">', unsafe_allow_html=True)
