@@ -273,19 +273,19 @@ if run_button:
                     st.subheader("Conversion LIFT Score")
                     # Выводим главный KPI крупным шрифтом с помощью st.metric
                     st.metric(label="Индекс вероятности конверсии", value=f"{lift_score} / 100")
-                    st.caption("Рассчитано на основе метрик: Ценность, Релевантность, Понятность, Трение, Тревожность.")
+                    st.caption("Рассчитано на основе метрик: Привлекательность оффера, Попадание в аудиторию, Ясность сообщения, Барьеры на пути, Факторы недоверия.")
                     st.markdown('</div>', unsafe_allow_html=True)
                     
                     # Выводим сырые оценки в виде таблицы для аналитиков
-                    st.markdown("**Сырые оценки ИИ (из 10):**")
+                    st.markdown("**Детальная оценка ИИ (из 10):**")
 
-                    # Переводим ключи на русский только для визуального отображения
+                    # Переводим ключи на понятный бизнес-язык для визуального отображения
                     translated_metrics = {
-                        "Ценность": ai_result['metrics'].get('value', 0),
-                        "Релевантность": ai_result['metrics'].get('relevance', 0),
-                        "Понятность": ai_result['metrics'].get('clarity', 0),
-                        "Трение": ai_result['metrics'].get('friction', 0),
-                        "Тревожность": ai_result['metrics'].get('anxiety', 0)
+                        "Привлекательность оффера": ai_result['metrics'].get('value', 0),
+                        "Попадание в аудиторию": ai_result['metrics'].get('relevance', 0),
+                        "Ясность сообщения": ai_result['metrics'].get('clarity', 0),
+                        "Барьеры на пути (сложность)": ai_result['metrics'].get('friction', 0),
+                        "Факторы недоверия (сомнения)": ai_result['metrics'].get('anxiety', 0)
                     }
                     st.json(translated_metrics)
                 
