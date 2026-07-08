@@ -131,7 +131,7 @@ def run_ai_simulation(api_key: str, text_content: str, personas: str) -> Dict[st
     # Создаем конфигурацию генерации, принудительно устанавливая формат ответа JSON
     generation_config = genai.types.GenerationConfig(
         response_mime_type="application/json",
-        temperature=0.4 # Низкая температура для более предсказуемого и аналитического ответа
+        temperature=0.0 # Температура 0.0 для максимальной жесткости и стабильности оценок
     )
     
     # Инициализируем модель (используем быструю и дешевую flash-модель, идеальную для JSON)
