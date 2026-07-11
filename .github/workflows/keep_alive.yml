@@ -1,0 +1,21 @@
+name: Keep Streamlit App Awake
+
+on:
+  schedule:
+   - cron: "0 * * * *" # Автоматический запуск каждый 1 час
+  workflow_dispatch: # Оставляем возможность запустить вручную
+
+jobs:
+  keep-alive:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Create empty commit to reset Streamlit sleep timer
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit --allow-empty -m "Автоматический сброс таймера сна Streamlit"
+          git push
